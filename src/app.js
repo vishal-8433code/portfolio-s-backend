@@ -6,9 +6,19 @@ import cors from "cors"
 
 const app = express()
 
+const allowedOrigins = [
+  "http://localhost:8080",
+  "https://vishal-s-portfolio-six.vercel.app"
+];
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Apna frontend domain
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
