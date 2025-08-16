@@ -4,7 +4,7 @@ const router =  Router();
 
 router.route("/submit").post(uploadUserDetail)
 router.route("/getAllData").get(getUserDetail)
-router.route("/health").get(() => {
+router.route("/health").get((req,res) => {
     res.status(200).send('OK');
 })
 
