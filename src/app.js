@@ -8,7 +8,7 @@ const app = express()
 
 const allowedOrigins = [
   "http://localhost:8080",
-  "https://vishal-s-portfolio-six.vercel.app"
+process.env.FRONTEND_URL
 ];
 
 app.use(cors({
@@ -20,8 +20,10 @@ app.use(cors({
     }
   },
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true // 🔹 Yeh add karo
 }));
+
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
